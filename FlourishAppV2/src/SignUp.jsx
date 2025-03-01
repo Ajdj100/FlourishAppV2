@@ -35,7 +35,9 @@ const SignUp = () => {
       });
       if(response.status===200){
         navigate("/Dashboard",{state:{username}});
-        console.log("All good");
+        const data=await response.json();
+        const userId=data.userId;
+        sessionStorage.setItem("userId",userId);
       }
       else{
         setError("Invalid user name or password");

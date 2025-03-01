@@ -4,6 +4,9 @@ import { useLocation } from "react-router-dom";
 const Dashboard = () => {
   const location = useLocation();
   const { username } = location.state || { username: "user" };
+  const userId=sessionStorage.getItem("userId");
+
+   
   return (
     <div className="h-screen w-screen bg-[#84C981] flex flex-col space-y-4 items-center p-3">
       <div className="w-[90%] bg-[#f1f1f1] h-[10%] rounded-3xl px-6 py-4 text-center flex justify-between  shadow-md shadow-green-900">
