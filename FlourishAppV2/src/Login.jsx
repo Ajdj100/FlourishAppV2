@@ -35,7 +35,7 @@ const handleLogin=async(e)=>{
       body: JSON.stringify({username,password})
     });
     if(response.status===200){
-      navigate("/Dashboard")
+      navigate("/Dashboard",{state:{username}});
       console.log("All good");
     }
     else{
