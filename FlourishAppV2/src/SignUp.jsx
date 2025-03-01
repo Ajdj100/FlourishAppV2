@@ -6,6 +6,23 @@ const SignUp = () => {
   function gotoLogin() {
     navigate("/");
   }
+
+  const handleSignUp=async(e)=>{
+    e.preventDefault();
+    try{
+      
+      const response=await fetch("http://10.144.112.144:8080/signUp",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body: JSON.stringify({username,password})
+      });
+    }
+    catch(error){
+      setError("An error occured")
+    }
+  };
   return (
     <div className="h-screen w-screen bg-[#84C981] flex justify-center items-center">
       <div className="flex w-[90%] h-[85%] bg-amber-50 shadow rounded-3xl overflow-hidden">
@@ -47,7 +64,7 @@ const SignUp = () => {
             </div>
           </form>
 
-          <button className="mt-6 w-3/4 bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-lg transition duration-200">
+          <button onClick={handleSignUp} className="mt-6 w-3/4 bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-lg transition duration-200">
             Sign Up
           </button>
 
