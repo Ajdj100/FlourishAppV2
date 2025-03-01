@@ -17,7 +17,7 @@ const Dashboard = () => {
           <h1 className="text-2xl">
             Great job {username}👏, Your progress is blooming! ☘️
           </h1>
-          <div className="todo bg-[#f1f1f1] h-[40%] w-full rounded-2xl p-4 mt-3 shadow-md shadow-green-900">
+          <div className="todo bg-[#f1f1f1] h-[40%] w-full rounded-2xl p-4 mt-3 shadow-md" style={{boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)' }}>
             <h1 className="text-xl ">My Today's Tasks</h1>
           </div>
           <div className="mytasks p-4 mt-3">
