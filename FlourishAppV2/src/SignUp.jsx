@@ -1,23 +1,45 @@
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+    const[username,setUsername]=useState("");
+    const[password,setPassword]=useState("");
+    const[error,setError]=useState("");
+  
   const navigate = useNavigate();
   function gotoLogin() {
     navigate("/");
+  }
+
+  const handleUserName = (e) => {
+    e.preventDefault();
+    setUsername(e.target.value);
+  }
+
+  const handlePassword = (e) => {
+    e.preventDefault();
+    setPassword(e.target.value);
   }
 
   const handleSignUp=async(e)=>{
     e.preventDefault();
     try{
       
-      const response=await fetch("http://10.144.112.144:8080/signUp",{
+      const response=await fetch("http://10.144.112.144:8080/signup",{
         method:"POST",
         headers:{
           "Content-Type":"application/json",
         },
         body: JSON.stringify({username,password})
       });
+      if(response.status===200){
+        navigate("/Dashboard")
+        console.log("All good");
+      }
+      else{
+        setError("Invalid user name or password");
+      }
     }
     catch(error){
       setError("An error occured")
@@ -38,6 +60,7 @@ const SignUp = () => {
                 type="text"
                 placeholder="Enter your username"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+                onChange={handleUserName}
               />
             </div>
 
@@ -49,6 +72,7 @@ const SignUp = () => {
                 type="password"
                 placeholder="Enter your password"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+                onChange={handlePassword}
               />
             </div>
 
