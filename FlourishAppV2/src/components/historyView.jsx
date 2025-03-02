@@ -8,21 +8,6 @@ function HistoryHover({hidden, date}) {
     )
 }
 
-// useEffect(()=>{
-//     const fetchhistoryData=async()=>{
-//         const response=await fetch("http://10.144.112.144:8080/treedata",{
-//             method: "POST",
-//             headers: {
-//               "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({
-//               userId: Number(userId),
-//               taskId: Number(taskId),
-//             }),
-//         })
-//     }
-// })
-
 function HistoryBlock({ success, date }) {
 
     const [hover, setHover] = useState(false);
@@ -52,7 +37,7 @@ function assembleDateString(today) {
     return ds;
 }
 
-export default function HistoryView() {
+export default function HistoryView({historyArray}) {
 
     let dayCount = 60;
 
@@ -62,7 +47,7 @@ export default function HistoryView() {
 
     for (var i = 0; i < dayCount; i++) {
 
-        boxes.push(<HistoryBlock key={i} date={assembleDateString(today)} success={Math.round(Math.random())} />)
+        boxes.push(<HistoryBlock key={i} date={assembleDateString(today)} success={historyArray[i] || false} />)
         today.setDate(today.getDate() - 1);
     }
     boxes.reverse()
