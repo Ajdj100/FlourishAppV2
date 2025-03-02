@@ -46,7 +46,7 @@ export default function Tree({ treeHeight }) {
     }
     return (
         <>
-            <div className="tContainer flex flex-col-reverse mx-auto items-center">
+            <div className="tContainer flex flex-col-reverse mx-auto items-center object-contain">
                 <div className="tTrunk" style={trunkStyle}></div>
                 <div className="flex flex-col-reverse mx-auto items-center">
                     {layers}

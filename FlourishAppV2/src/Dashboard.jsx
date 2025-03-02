@@ -80,7 +80,7 @@ const Dashboard = () => {
           Logout
         </button>
       </div>
-      <div className="flex w-[90%] h-full justify-between shadow-2xl">
+      <div className="flex w-[90%] h-[90%] justify-between shadow-2xl">
         <div className="flex w-[48%] flex-col bg-[#e2e2e2d3] shadow-lg shadow-green-950 rounded-3xl overflow-hidden p-6">
           <h1 className="text-2xl pl-4">
             Great job {username}!👏 Your progress is blooming☘️
