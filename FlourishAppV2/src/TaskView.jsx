@@ -61,8 +61,9 @@ export default function TaskView() {
     console.log(treeJSON[0]);
   }
   return(
-
-  <div className="flex flex-col h-full space-y-3 justify-end">
+<>
+<p className="font-bold text-xl">{treeJSON?.[0]?.taskName}</p>
+<div className="flex flex-col h-full space-y-3 justify-end">
     <div className="tree-wrapper flex justify-center items-center">
       <Tree treeHeight={treeJSON?.[0]?.daysCompleted} />
     </div>
@@ -73,7 +74,9 @@ export default function TaskView() {
       />
       <HistoryView historyArray={treeJSON?.[0]?.days} />
     </div>
-  </div>);
+  </div>
+</>
+);
   
   
 }

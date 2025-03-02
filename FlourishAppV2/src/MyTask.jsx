@@ -128,13 +128,13 @@ const MyTask = ({ setRefresh }) => {
       {/* Modal */}
       <div className="relative">
         {isOpen && (
-          <div className="fixed inset-0 bg-[#8a8a8a44] bg-opacity-50 backdrop-blur-md flex flex-col justify-center items-center">
+          <div className="fixed z-50 inset-0 bg-[#8a8a8a44] bg-opacity-50 backdrop-blur-md flex flex-col justify-center items-center">
             <div className="bg-amber-50 p-6 rounded-lg shadow-lg">
               <div>
                 {joinMode ? <JoinTaskModal userId={userId} closeFunc={closeModal}></JoinTaskModal> :<CreateTaskModal userId={userId} closeFunc={closeModal}></CreateTaskModal>}
               </div>
 
-              <a className="cursor-pointer text-center" onClick={toggleJoinMode}>Have a code to join a friend's task?</a>
+              <a className="cursor-pointer text-center" onClick={toggleJoinMode}>{joinMode ? "Have a code to join a friend's task?" : "Want to create a new task? Click here!"}</a>
             </div>
           </div>
         )}

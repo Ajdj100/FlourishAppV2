@@ -35,10 +35,10 @@ const handleLogin=async(e)=>{
       body: JSON.stringify({username,password})
     });
     if(response.status===200){
-      navigate("/Dashboard",{state:{username}});
       const data=await response.json();
       const userId=data.userId;
       sessionStorage.setItem("userId",userId);
+      navigate("/Dashboard",{state:{username}});
     }
     else{
       setError("Invalid user name or password");

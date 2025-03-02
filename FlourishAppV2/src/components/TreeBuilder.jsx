@@ -10,10 +10,10 @@ export default function Tree({ treeHeight }) {
     const maxGrowthForScale = 7; //max growth per layer
 
     // //REFACTOR
-    const preCompTotal = treeHeight / maxGrowthForScale;
+    const preCompTotal = 1 + treeHeight / maxGrowthForScale;
 
     let layerCount = Math.floor(preCompTotal);
-
+    console.log(preCompTotal, layerCount)
     //guard
     if (layerCount == 0)
         layerCount = 1;
