@@ -1,3 +1,4 @@
+import HistoryView from "./components/historyView";
 import MilestoneBar from "./components/milestoneBar";
 
 export default function TaskView() {
@@ -13,6 +14,7 @@ export default function TaskView() {
             <h1>Tree Area</h1>
             <img src="./src/assets/tree.svg" alt="" />
             <MilestoneBar growthGoal={goal} currentGrowth={cur}></MilestoneBar>
+            <HistoryView></HistoryView>
         </>
     )
 }
