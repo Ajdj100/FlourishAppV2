@@ -96,8 +96,8 @@ const MyTask = () => {
       {/* Modal */}
       <div className="relative">
         {isOpen && (
-          <div className="fixed inset-0 text-white bg-[#8a8a8a] bg-opacity-50 backdrop-blur-md flex justify-center items-center">
-            <form action="">
+          <div className="fixed inset-0 bg-[#8a8a8a44] bg-opacity-50 backdrop-blur-md flex justify-center items-center">
+            <form action="" className="bg-amber-50 p-6 rounded-lg shadow-lg">
               <div className="m-3">
                 <label htmlFor="taskName" className="mx-3">
                   Task Name
@@ -106,14 +106,21 @@ const MyTask = () => {
                   type="text"
                   name="taskName"
                   id="taskName"
-                  className="bg-white text-black"
+                  className="bg-white text-black py-1 px-2 rounded-sm border"
                   value={taskName}
                   onChange={handleTaskName}
                 />
               </div>
-              <div className="text-white flex justify-around text-sm mt-3">
-                <button onClick={handleSaveTask}>Save</button>
-                <button>Cancel</button>
+              <div className="text-white flex justify-around mt-8">
+                <button
+                  onClick={handleSaveTask}
+                  className="bg-black px-6 py-2 rounded-sm cursor-pointer"
+                >
+                  Save
+                </button>
+                <button className="border-2 border-black text-black w-2xl py-2 rounded-sm cursor-pointer">
+                  Cancel
+                </button>
               </div>
             </form>
           </div>
