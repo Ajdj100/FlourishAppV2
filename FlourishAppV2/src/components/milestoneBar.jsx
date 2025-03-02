@@ -1,7 +1,6 @@
 export default function MilestoneBar({ currentGrowth, growthGoal }) {
 
     let fill = ((currentGrowth / growthGoal) * 100).toFixed(0);
-    console.log(fill);
 
     return (
         <>
