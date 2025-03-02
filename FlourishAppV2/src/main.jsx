@@ -19,11 +19,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<Login />} />
         <Route path="/tree" element={<Tree />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/Dashboard" element={<Dashboard>
-
-          <MyTask></MyTask>
-          <MilestoneBar currentGrowth={50} growthGoal={100} />
-        </Dashboard>} />
+        <Route path="/Dashboard" element={<Dashboard/>} />
       </Routes>
     </TaskProvider>
   </BrowserRouter>
