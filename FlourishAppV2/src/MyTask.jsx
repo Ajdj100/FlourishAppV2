@@ -7,13 +7,13 @@ import { TaskContext } from "./TaskContext";
 const MyTask = ({setRefresh}) => {
   const userId = sessionStorage.getItem("userId");
   const [isOpen, setIsOpen] = useState(false);
-  const {setTaskId} =useContext(TaskContext);
+  const {taskId,setTaskId} =useContext(TaskContext);
   const [taskName, setTaskName] = useState("");
   const [taskList, setTaskList] = useState([]);
   const[reload,setReload]=useState(false);
-  const contextValue=useContext(TaskContext);
-  console.log(contextValue);
+ 
 
+  console.log(taskId)
   const addTask = () => {
     setIsOpen(true);
   };
@@ -60,6 +60,7 @@ const MyTask = ({setRefresh}) => {
           console.log(data);
           setTaskList(data);
         }
+       
       } catch (e) {
         console.log(e);
       }

@@ -28,46 +28,52 @@ const getData = async (id) => {
 export default function TaskView() {
   let goal = 14;
   let cur = 8;
-  const {taskId} =useContext(TaskContext);
-
+  const { taskId } = useContext(TaskContext);
+  console.log(taskId);
   const [treeJSON, setTreeJSON] = useState(null);
 
   useEffect(() => {
-    console.log("running use effct")
+    console.log("running use effct");
     const fetchData = async () => {
       try {
         const data = await getData(taskId);
         setTreeJSON(data);
+        console.log(taskId);
       } catch (e) {
         console.log(e);
       }
     };
 
     fetchData();
-  }, [taskId]); 
+  }, [taskId]);
+
+
+
+
+
+  if(taskId==null) {
+    return(<div className="text-2xl justify-center"> Please select any Task to see your plant growing! 🌿</div>)
+  }
 
   if (treeJSON == null) {
     return <div></div>;
   } else {
     console.log(treeJSON[0]);
   }
+  return(
 
-  return (
-    <>
-    
-      <div className="flex flex-col h-full space-y-3 justify-end">
-        <div className="tree-wrapper flex justify-center items-center">
-          <Tree treeHeight={treeJSON[0].daysCompleted}></Tree>
-        </div>
-        <div className="flex flex-col space-y-10 items-center">
-          <MilestoneBar
-            growthGoal={goal}
-            currentGrowth={treeJSON[0].daysCompleted}
-          ></MilestoneBar>
-          <HistoryView historyArray={treeJSON[0].days}></HistoryView>
-        </div>
-      </div>
-      
-    </>
-  );
+  <div className="flex flex-col h-full space-y-3 justify-end">
+    <div className="tree-wrapper flex justify-center items-center">
+      <Tree treeHeight={treeJSON?.[0]?.daysCompleted} />
+    </div>
+    <div className="flex flex-col space-y-10 items-center">
+      <MilestoneBar
+        growthGoal={goal}
+        currentGrowth={treeJSON?.[0]?.daysCompleted}
+      />
+      <HistoryView historyArray={treeJSON?.[0]?.days} />
+    </div>
+  </div>);
+  
+  
 }
