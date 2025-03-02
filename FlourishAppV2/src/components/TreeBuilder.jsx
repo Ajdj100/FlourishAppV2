@@ -4,8 +4,9 @@
 //     let initialTree = 
 // }
 
-export default function Tree({ treeHeight = 24 }) {
+export default function Tree({ treeHeight }) {
 
+    console.log(treeHeight)
     const maxGrowthForScale = 7; //max growth per layer
 
     // //REFACTOR
@@ -43,7 +44,6 @@ export default function Tree({ treeHeight = 24 }) {
 
         layers.push(<div key={i} className="tChunk" style={style}></div>)
     }
-    console.log(layers)
     return (
         <>
             <div className="tContainer flex flex-col-reverse mx-auto items-center">
