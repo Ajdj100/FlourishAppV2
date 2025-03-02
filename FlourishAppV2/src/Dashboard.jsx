@@ -81,16 +81,17 @@ const Dashboard = () => {
       </div>
       <div className="flex w-[90%] h-full justify-between shadow-2xl">
         <div className="flex w-[48%] flex-col bg-[#e2e2e2d3] shadow-lg shadow-green-950 rounded-3xl overflow-hidden p-6">
-          <h1 className="text-2xl pl-8">
+          <h1 className="text-2xl pl-4">
             Great job {username}!👏 Your progress is blooming☘️
           </h1>
           <div
-            className="todo bg-[#f1f1f1] min-h-[30%] w-full rounded-2xl p-4 mt-3 shadow-md"
+            className="todo bg-[#f1f1f1] h-[30%] rounded-2xl p-4 mt-3 mx-4 shadow-md "
             style={{ boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)" }}
           >
-            <h1 className="text-xl pl-4 font-semibold">My Today's Tasks</h1>
-            <div className="list-none p-4 space-y-1">
-              {Tasks.map((task) => {
+            <h1 className="text-xl pl- font-semibold">My Today's Tasks</h1>
+            <div className="list-none p-4 space-y-1  h-[90%] overflow-y-auto">
+              {Tasks.length===0?<p>Dumb! Add new tasks to progress!</p>:
+              Tasks.map((task) => {
                 return (
                   <li
                     key={task.taskId}
@@ -114,7 +115,7 @@ const Dashboard = () => {
           </div>
 
           {/* My Task Section */}
-          <MyTask />
+          <MyTask setRefresh={setReload} />
         </div>
         <div className="flex w-[51%] flex-col bg-[#e2e2e2d3] rounded-3xl overflow-hidden p-10 shadow-lg shadow-green-950">
               <TaskView></TaskView>

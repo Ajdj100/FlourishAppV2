@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import users from "./assets/user.svg";
 import add from "./assets/add.svg";
 import dltBtn from "./assets/delete.svg";
 
-const MyTask = () => {
+const MyTask = ({setRefresh}) => {
+  const userId = sessionStorage.getItem("userId");
   const [isOpen, setIsOpen] = useState(false);
 
   const [taskName, setTaskName] = useState("");
-  const [taskList, setTaskList] = useState([
-    {
-      id: 1,
-      taskName: "Task name",
-      treeHeight: 100,
-      taskIcon: 3,
-    },
-  ]);
-
+  const [taskList, setTaskList] = useState([]);
+  const[reload,setReload]=useState(false);
   const addTask = () => {
     setIsOpen(true);
   };
@@ -25,7 +19,7 @@ const MyTask = () => {
     console.log("Task Name: ", e.target.value);
   };
 
-  const handleSaveTask = (e) => {
+  const handleSaveTask = async (e) => {
     e.preventDefault();
     setIsOpen(false);
     if (taskName !== "") {
@@ -40,16 +34,71 @@ const MyTask = () => {
     } else {
       console.log("Task name and icon are empty");
     }
+    try {
+      const response = await fetch("http://10.144.112.144:8080/newtask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "Application/json",
+        },
+        body: JSON.stringify({ userId: Number(userId), taskName: taskName }),
+      });
+      if (response.status === 200) {
+        console.log("wohooooo");
+        setRefresh(prev=>!prev)
+
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const deleteTask = (id) => {
-    setTaskList((prevList) => prevList.filter((task) => task.id !== id));
+  useEffect(() => {
+    const fetchUserTasks = async () => {
+      try {
+        const response = await fetch("http://10.144.112.144:8080/usertasks", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId: Number(userId) }),
+        });
+        if (response.status === 200) {
+          console.log("yayyyy!!");
+          const data = await response.json();
+          console.log(data);
+          setTaskList(data);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchUserTasks();
+  }, [reload]);
+
+  const deleteTask = async(id) => {
+    try{
+      const response=await fetch("http://10.144.112.144:8080/deletetask",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify({userId:Number(userId),taskId:Number(id)})
+      });
+      if(response.status===200){
+        console.log("deleetd user");
+        setReload(!reload);
+        setRefresh(prev=>!prev);
+      }
+    }
+    catch(e){
+      console.log("cannot delete task lollll")
+    }
   };
 
   return (
     <div className="mytasks p-4 mt-3">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-xl pl-4 font-semibold ">My Tasks</h1>
+      <div className="flex items-center justify-between mb-6 ">
+        <h1 className="text-xl pl-2 font-semibold ">My Tasks</h1>
         <img
           src={add}
           alt=""
@@ -57,42 +106,42 @@ const MyTask = () => {
           className="cursor-pointer px-1"
         />
       </div>
-
-      {/* First task */}
-      {taskList.map((task) => {
-        return (
-          <div
-            key={task.id}
-            className="text-black bg-[#f1f1f1] w-full rounded-2xl p-3 mt-3 shadow-md flex-col"
-          >
-            <div className="flex justify-between items-center my-2 px-3">
-              <div>
-                <p>{task.taskName}</p>
-              </div>
-              <div className="hover:bg-red-300 px-1 rounded-full cursor-pointer">
-                <img
-                  src={dltBtn}
-                  alt=""
-                  onClick={() => deleteTask(task.id)}
-                  className="my-1"
-                />
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between px-3 my-2">
+      <div className="max-h-[270px] overflow-y-auto pr-2 space-y-3">
+        {!taskList ||taskList.length===0?<p className="p-2">Dumb! Add new tasks to progress!</p>:
+        taskList.map((task) => {
+          return (
+            <div
+              key={task.taskId}
+              className="text-black bg-[#f1f1f1] w-full rounded-2xl p-1 shadow-md flex-col"
+            >
+              <div className="flex justify-between items-center my-1 px-3">
                 <div>
-                  <p>{task.treeHeight}</p>
+                  <p>{task.taskName}</p>
                 </div>
-                <div className="flex items-end px-1">
-                  <span className="pr-1">{task.taskIcon}</span>
-                  <img src={users} alt="" />
+                <div className="hover:bg-red-300 px-1 rounded-full cursor-pointer">
+                  <img
+                    src={dltBtn}
+                    alt=""
+                    onClick={() => deleteTask(task.taskId)}
+                    className="my-1"
+                  />
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between px-3 my-2">
+                  <div>
+                    <p>{task.daysCompleted}</p>
+                  </div>
+                  <div className="flex items-end px-1">
+                    <span className="pr-1">{task.userNum}</span>
+                    <img src={users} alt="" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        );
-      })}
-
+          );
+        })}
+      </div>
       {/* Modal */}
       <div className="relative">
         {isOpen && (
@@ -114,11 +163,11 @@ const MyTask = () => {
               <div className="text-white flex justify-around mt-8">
                 <button
                   onClick={handleSaveTask}
-                  className="bg-black px-6 py-2 rounded-sm cursor-pointer"
+                  className="bg-black py-2 rounded-sm cursor-pointer w-[100px]"
                 >
                   Save
                 </button>
-                <button className="border-2 border-black text-black w-2xl py-2 rounded-sm cursor-pointer">
+                <button className="border-2 border-black text-black py-2 rounded-sm cursor-pointer w-[100px]">
                   Cancel
                 </button>
               </div>
