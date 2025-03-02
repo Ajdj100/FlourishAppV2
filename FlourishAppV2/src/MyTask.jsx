@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import users from "./assets/user.svg";
 import add from "./assets/add.svg";
 import dltBtn from "./assets/delete.svg";
+import { TaskContext } from "./TaskContext";
 
 const MyTask = ({setRefresh}) => {
   const userId = sessionStorage.getItem("userId");
   const [isOpen, setIsOpen] = useState(false);
-
+  const {setTaskId} =useContext(TaskContext);
   const [taskName, setTaskName] = useState("");
   const [taskList, setTaskList] = useState([]);
   const[reload,setReload]=useState(false);
+  const contextValue=useContext(TaskContext);
+  console.log(contextValue);
+
   const addTask = () => {
     setIsOpen(true);
   };
@@ -83,10 +87,6 @@ const MyTask = ({setRefresh}) => {
     }
   };
 
-  const handleTaskClick=async(id)=>{
-
-  }
-
   return (
     <div className="mytasks p-4 mt-3">
       <div className="flex items-center justify-between mb-6 ">
@@ -105,8 +105,8 @@ const MyTask = ({setRefresh}) => {
             <div
               key={task.taskId}
               className="text-black bg-[#f1f1f1] w-full rounded-2xl p-1 shadow-md flex-col cursor-pointer hover:shadow-xl"
-              onClick={handleTaskClick=()=>{
-
+              onClick={()=>{
+                setTaskId(task.taskId)
               }}
             >
               <div className="flex justify-between items-center my-1 px-3 ">

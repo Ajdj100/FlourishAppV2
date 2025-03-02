@@ -1,12 +1,16 @@
+import { useContext } from "react";
+import { TaskContext } from "../TaskContext";
+
 export default function MilestoneBar({ currentGrowth, growthGoal }) {
 
     let fill = ((currentGrowth / growthGoal) * 100).toFixed(0);
-
+    const {taskId} =useContext(TaskContext);
     return (
         <>
             {/* full bar */}
             <div className="h-6 bg-white w-full rounded-2xl relative">
                 {/* partial bar */}
+                <p>Task Id: {taskId}</p>
                 <div className="absolute bg-[#84C981] h-full rounded-2xl" style={{ width: fill + '%' }}>
 
                 </div>
