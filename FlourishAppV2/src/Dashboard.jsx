@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import MyTask from "./MyTask";
+import TaskView from "./TaskView";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -70,8 +71,7 @@ const Dashboard = () => {
 
         </div>
         <div className="flex w-[51%] flex-col bg-[#e2e2e2d3] rounded-3xl overflow-hidden p-10 shadow-lg shadow-green-950">
-          <h1>Tree Area</h1>
-          <img src="./src/assets/tree.svg" alt="" />
+              <TaskView></TaskView>
         </div>
       </div>
     </div>
