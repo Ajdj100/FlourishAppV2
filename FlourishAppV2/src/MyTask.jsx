@@ -134,7 +134,7 @@ const MyTask = ({ setRefresh }) => {
                 {joinMode ? <JoinTaskModal userId={userId} closeFunc={closeModal}></JoinTaskModal> :<CreateTaskModal userId={userId} closeFunc={closeModal}></CreateTaskModal>}
               </div>
 
-              <a className="cursor-pointer text-center" onClick={toggleJoinMode}>{joinMode ? "Have a code to join a friend's task?" : "Want to create a new task? Click here!"}</a>
+              <a className="cursor-pointer text-center" onClick={toggleJoinMode}>{!joinMode ? "Have a code to join a friend's task?" : "Want to create a new task? Click here!"}</a>
             </div>
           </div>
         )}

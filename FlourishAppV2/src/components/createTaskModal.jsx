@@ -20,7 +20,8 @@ export default function CreateTaskModal({ userId, closeFunc }) {
             });
             if (response.status === 200) {
                 console.log("wohooooo");
-                setRefresh(prev => !prev)
+                closeFunc();
+                
 
             }
         } catch (e) {
