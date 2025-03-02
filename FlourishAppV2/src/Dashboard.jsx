@@ -90,7 +90,7 @@ const Dashboard = () => {
           >
             <h1 className="text-xl pl- font-semibold">My Today's Tasks</h1>
             <div className="list-none p-4 space-y-1  h-[90%] overflow-y-auto">
-              {Tasks.length===0?<p>Dumb! Add new tasks to progress!</p>:
+              {!Tasks || Tasks.length===0?<p>Dumb! Add new tasks to progress!</p>:
               Tasks.map((task) => {
                 return (
                   <li
