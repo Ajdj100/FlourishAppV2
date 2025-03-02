@@ -41,6 +41,7 @@ const Dashboard = () => {
   }, [reload]);
 
   function handlelogOut() {
+    sessionStorage.clear();
     navigate("/");
   }
 
