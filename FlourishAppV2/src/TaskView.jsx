@@ -58,17 +58,25 @@ export default function TaskView() {
   if (treeJSON == null) {
     return <div></div>;
   } else {
-    console.log(treeJSON[0]);
+    console.log(treeJSON);
   }
 
   //build all trees
+  let trees = [];
+
+  treeJSON.forEach(element => {
+   trees.push(<Tree treeHeight={element?.daysCompleted} />) 
+  });
 
   return(
 <>
 <p className="font-bold text-xl">{treeJSON?.[0]?.taskName}</p>
 <div className="flex flex-col h-full space-y-3 justify-end">
-    <div className="tree-wrapper flex justify-center items-center">
-      <Tree treeHeight={treeJSON?.[0]?.daysCompleted} />
+    <div className="flex flex-row px-20">
+      <div className="tree-wrapper flex justify-center items-center">
+        {/* <Tree treeHeight={treeJSON?.[0]?.daysCompleted} /> */}
+        {trees}
+      </div>
     </div>
     <div className="flex flex-col space-y-10 items-center">
       <MilestoneBar
