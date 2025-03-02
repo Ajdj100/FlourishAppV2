@@ -60,6 +60,9 @@ export default function TaskView() {
   } else {
     console.log(treeJSON[0]);
   }
+
+  //build all trees
+
   return(
 <>
 <p className="font-bold text-xl">{treeJSON?.[0]?.taskName}</p>
@@ -75,6 +78,7 @@ export default function TaskView() {
       <HistoryView historyArray={treeJSON?.[0]?.days} />
     </div>
   </div>
+  <p className="text-neutral-600">Invite your friends: {treeJSON?.[0].taskCode}</p>
 </>
 );
   

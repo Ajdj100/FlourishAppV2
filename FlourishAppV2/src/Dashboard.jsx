@@ -118,7 +118,7 @@ const Dashboard = () => {
           {/* My Task Section */}
           <MyTask setRefresh={setReload} />
         </div>
-        <div className="flex w-[51%] flex-col bg-[#e2e2e2d3] rounded-3xl overflow-hidden p-10 shadow-lg shadow-green-950">
+        <div className="flex w-[51%] flex-col bg-[#e2e2e2d3] rounded-3xl overflow-hidden p-8 shadow-lg shadow-green-950">
               <TaskView></TaskView>
         </div>
       </div>
