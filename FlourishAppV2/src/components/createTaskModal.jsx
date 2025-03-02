@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function CreateTaskModal({ userId }) {
+export default function CreateTaskModal({ userId, closeFunc }) {
     const [taskName, setTaskName] = useState("");
 
     const handleTaskName = (e) => {
@@ -53,7 +53,9 @@ export default function CreateTaskModal({ userId }) {
                 >
                     Save
                 </button>
-                <button className="border-2 border-black text-black py-2 rounded-sm cursor-pointer w-[100px]">
+                <button 
+                onClick={closeFunc}
+                className="border-2 border-black text-black py-2 rounded-sm cursor-pointer w-[100px]">
                     Cancel
                 </button>
             </div>

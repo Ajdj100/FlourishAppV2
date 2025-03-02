@@ -21,6 +21,9 @@ const MyTask = ({ setRefresh }) => {
     setIsOpen(true);
   };
 
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   function toggleJoinMode() {
     setJoinMode(!joinMode);
@@ -126,7 +129,7 @@ const MyTask = ({ setRefresh }) => {
           <div className="fixed inset-0 bg-[#8a8a8a44] bg-opacity-50 backdrop-blur-md flex flex-col justify-center items-center">
             <form action="" className="bg-amber-50 p-6 rounded-lg shadow-lg">
               <div>
-                {joinMode ? <CreateTaskModal userId={userId}></CreateTaskModal> : <JoinTaskModal userId={userId}></JoinTaskModal>}
+                {joinMode ? <JoinTaskModal userId={userId} closeFunc={closeModal}></JoinTaskModal> :<CreateTaskModal userId={userId} closeFunc={closeModal}></CreateTaskModal>}
               </div>
 
               <a className="cursor-pointer text-center" onClick={toggleJoinMode}>Have a code to join a friend's task?</a>

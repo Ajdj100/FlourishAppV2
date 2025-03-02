@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function JoinTaskModal({ userId }) {
+export default function JoinTaskModal({ userId, closeFunc }) {
     const [joinCode, setJoinCode] = useState("");
 
     const handleTaskName = (e) => {
@@ -52,7 +52,9 @@ export default function JoinTaskModal({ userId }) {
                 >
                     Save
                 </button>
-                <button className="border-2 border-black text-black py-2 rounded-sm cursor-pointer w-[100px]">
+                <button 
+                onClick={closeFunc}
+                className="border-2 border-black text-black py-2 rounded-sm cursor-pointer w-[100px]">
                     Cancel
                 </button>
             </div>
