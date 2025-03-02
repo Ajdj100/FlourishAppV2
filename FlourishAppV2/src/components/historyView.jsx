@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function HistoryHover({hidden, date}) {
     return(
@@ -8,6 +8,20 @@ function HistoryHover({hidden, date}) {
     )
 }
 
+// useEffect(()=>{
+//     const fetchhistoryData=async()=>{
+//         const response=await fetch("http://10.144.112.144:8080/treedata",{
+//             method: "POST",
+//             headers: {
+//               "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//               userId: Number(userId),
+//               taskId: Number(taskId),
+//             }),
+//         })
+//     }
+// })
 
 function HistoryBlock({ success, date }) {
 

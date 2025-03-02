@@ -20,20 +20,7 @@ const MyTask = ({setRefresh}) => {
   };
 
   const handleSaveTask = async (e) => {
-    e.preventDefault();
-    setIsOpen(false);
-    if (taskName !== "") {
-      const newTask = {
-        id: taskList.length + 1,
-        taskName: taskName,
-        treeHeight: 0,
-        taskIcon: 1,
-      };
-      setTaskList((prevList) => [...prevList, newTask]);
-      setTaskName("");
-    } else {
-      console.log("Task name and icon are empty");
-    }
+    
     try {
       const response = await fetch("http://10.144.112.144:8080/newtask", {
         method: "POST",
@@ -50,6 +37,7 @@ const MyTask = ({setRefresh}) => {
     } catch (e) {
       console.log(e);
     }
+    setReload(!reload);
   };
 
   useEffect(() => {
@@ -95,6 +83,10 @@ const MyTask = ({setRefresh}) => {
     }
   };
 
+  const handleTaskClick=async(id)=>{
+
+  }
+
   return (
     <div className="mytasks p-4 mt-3">
       <div className="flex items-center justify-between mb-6 ">
@@ -112,9 +104,12 @@ const MyTask = ({setRefresh}) => {
           return (
             <div
               key={task.taskId}
-              className="text-black bg-[#f1f1f1] w-full rounded-2xl p-1 shadow-md flex-col"
+              className="text-black bg-[#f1f1f1] w-full rounded-2xl p-1 shadow-md flex-col cursor-pointer hover:shadow-xl"
+              onClick={handleTaskClick=()=>{
+                
+              }}
             >
-              <div className="flex justify-between items-center my-1 px-3">
+              <div className="flex justify-between items-center my-1 px-3 ">
                 <div>
                   <p>{task.taskName}</p>
                 </div>
