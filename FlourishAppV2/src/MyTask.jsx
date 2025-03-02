@@ -49,7 +49,7 @@ const MyTask = () => {
   return (
     <div className="mytasks p-4 mt-3">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-xl ">My Tasks</h1>
+        <h1 className="text-xl pl-4 font-semibold ">My Tasks</h1>
         <img
           src={add}
           alt=""
