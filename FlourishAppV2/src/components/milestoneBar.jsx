@@ -10,7 +10,6 @@ export default function MilestoneBar({ currentGrowth, growthGoal }) {
             {/* full bar */}
             <div className="h-6 bg-white w-full rounded-2xl relative">
                 {/* partial bar */}
-                <p>Task Id: {taskId}</p>
                 <div className="absolute bg-[#84C981] h-full rounded-2xl" style={{ width: fill + '%' }}>
 
                 </div>
