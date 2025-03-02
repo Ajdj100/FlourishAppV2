@@ -99,14 +99,14 @@ const MyTask = ({setRefresh}) => {
         />
       </div>
       <div className="max-h-[270px] overflow-y-auto pr-2 space-y-3">
-        {!taskList ||taskList.length===0?<p className="p-2">Dumb! Add new tasks to progress!</p>:
+        {!taskList ||taskList.length===0?<p className="p-2">Add a new Task!</p>:
         taskList.map((task) => {
           return (
             <div
               key={task.taskId}
               className="text-black bg-[#f1f1f1] w-full rounded-2xl p-1 shadow-md flex-col cursor-pointer hover:shadow-xl"
               onClick={handleTaskClick=()=>{
-                
+
               }}
             >
               <div className="flex justify-between items-center my-1 px-3 ">
