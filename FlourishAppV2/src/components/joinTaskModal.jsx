@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 export default function JoinTaskModal({ userId }) {
-    const [taskName, setTaskName] = useState("");
+    const [joinCode, setJoinCode] = useState("");
 
     const handleTaskName = (e) => {
-        setTaskName(e.target.value);
+        setJoinCode(e.target.value);
         console.log("Task Name: ", e.target.value);
     };
 
@@ -16,7 +16,7 @@ export default function JoinTaskModal({ userId }) {
                 headers: {
                     "Content-Type": "Application/json",
                 },
-                body: JSON.stringify({ userId: Number(userId), taskCode: taskName }),
+                body: JSON.stringify({ userId: Number(userId), taskCode: joinCode }),
             });
             if (response.status === 200) {
                 console.log("wohooooo");
@@ -33,15 +33,15 @@ export default function JoinTaskModal({ userId }) {
         <>
         <h1 className="font-bold text-center pb-5">Join a friend's task!</h1>
             <div className="m-3">
-                <label htmlFor="taskName" className="mx-3">
+                <label htmlFor="joinCode" className="mx-3">
                     Join Code
                 </label>
                 <input
                     type="text"
-                    name="taskName"
-                    id="taskName"
+                    name="joinCode"
+                    id="joinCode"
                     className="bg-white text-black py-1 px-2 rounded-sm border"
-                    value={taskName}
+                    value={joinCode}
                     onChange={handleTaskName}
                 />
             </div>
